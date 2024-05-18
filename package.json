@@ -9,10 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "^20.12.12",
     "@vitejs/plugin-vue": "^5.0.4",
     "less": "^4.2.0",
