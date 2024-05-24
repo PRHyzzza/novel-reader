@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
+    "localforage": "^1.10.0",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
