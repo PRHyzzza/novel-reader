@@ -1,17 +1,8 @@
 import { MD5 } from 'crypto-js'
-import { chapterPattern, chapterSplitTag } from '../tools'
-import { Ref, ref, toRef } from 'vue'
+import { Book, chapterPattern, chapterSplitTag, getBook } from '../tools'
+import { Ref, ref } from 'vue'
 import localforage from 'localforage'
 
-//ts声明类型
-interface Book {
-    title: string
-    md5: string
-    chapters: {
-        chapter?: string
-        content: string
-    }[]
-}
 
 /**
  * @description: 获取书籍信息
@@ -22,8 +13,8 @@ interface Book {
 export default (text: string, title: string): Ref<Book> => {
     //md5
     const md5 = MD5(text).toString()
-    localforage.getItem(md5).then((value) => {
-        if (value) return toRef(value) as Ref<Book>
+    getBook(md5).then(res => {
+        if (res) return res
     })
     //根据正则获取章节名称
     const chapters = text.match(chapterPattern)
