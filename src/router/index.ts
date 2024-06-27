@@ -10,7 +10,7 @@ const routes = [
       {
         path: '/book',
         name: 'Book',
-        component: () => import('../views/home/book/Book.vue'),
+        component: () => import('../views/home/book/Book.vue')
       },
       {
         path: '/user',
@@ -19,6 +19,11 @@ const routes = [
       }
     ]
   },
+  {
+    path: '/reader/:id',
+    name: 'reader',
+    component: () => import('../views/reader/index.vue'),
+  }
 ];
 
 export default createRouter({

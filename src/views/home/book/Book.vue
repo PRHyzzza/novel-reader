@@ -17,4 +17,5 @@ const addBook = (e: Event) => {
 
 <template>
     <input type="file" @change="addBook" />
+    <RouterLink to="/reader/1">go</RouterLink>
 </template>
