@@ -16,5 +16,5 @@ export interface Book {
 }
 
 export const getBook = async (md5: string) => {
- return await localforage.getItem<Book>(md5)
+ return await localforage.getItem<string>(md5)
 }

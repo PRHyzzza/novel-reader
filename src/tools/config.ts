@@ -13,7 +13,7 @@ const config = ref<Config>({
 })
 
 const initConfig = async () => {
- const localConfig = await localforage.getItem('config')
+ const localConfig = await localforage.getItem('configBook')
  if (localConfig) {
   config.value = JSON.parse(localConfig as string)
  }
@@ -24,8 +24,8 @@ const setConfig = (newConfig: Config) => {
 }
 
 watch(config, (newValue) => {
- localforage.setItem('config', JSON.stringify(newValue))
-})
+ localforage.setItem('configBook', JSON.stringify(newValue))
+},{deep: true})
 
 export {
  config,

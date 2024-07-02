@@ -3,7 +3,7 @@ import { onMounted, ref, nextTick } from 'vue';
 import { Book, getBook } from '../../tools';
 import { initBook, readBook, setPage } from '../../tools/read';
 
-const book = ref<Book>(JSON.parse((await getBook("d56802d9e199d718ddf5dd8bfdf1bdf8")) as unknown as string))
+const book = ref<Book>(JSON.parse((await getBook("caf05b904a8103fafce8c509f26e8617")) as string))
 const reader = ref<HTMLElement>()
 const readerHeight = ref(0)
 const readerWidth = ref(0)
@@ -15,9 +15,9 @@ onMounted(() => {
  nextTick(async () => {
   await initBook(book.value, readerWidth.value, readerHeight.value)
   show.value = true
-  setTimeout(() => {
-   setPage(readBook.value.page + 1)
-  }, 5000)
+  // setTimeout(() => {
+  //  setPage(readBook.value.page! + 1)
+  // }, 5000)
  })
  console.log(readBook.value);
 })
@@ -26,9 +26,10 @@ onMounted(() => {
 
 <template>
  <div class="reader-container">
-  <div ref="reader" class="reader-content">
-   <!-- <h1 class="reader-title" v-if="readBook.page === 1">{{ readBook.pages[readBook.chapterIndex][readBook.page] }}</h1> -->
-   <div class="reader-text" v-if="show">{{ readBook.pages[readBook.chapterIndex][readBook.page - 1] }}</div>
+  <div ref="reader" class="reader-content" :class="readBook.page === 1 ? 'flex-center' : ''">
+   <div class="reader-text" :class="readBook.page === 1 ? 'reader-title' : ''" v-if="show">
+    {{ readBook.pages![readBook.chapterIndex!][readBook.page! - 1] }}
+   </div>
   </div>
  </div>
 </template>
@@ -53,6 +54,7 @@ onMounted(() => {
  margin: 0;
  padding: 0;
  margin-top: 16px;
+ font-weight: bold;
 }
 
 .reader-text {

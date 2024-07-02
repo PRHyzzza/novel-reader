@@ -1,4 +1,5 @@
-body,#app {
+body,
+#app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -9,4 +10,11 @@ body,#app {
 
 a {
     text-decoration: none;
+}
+
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
