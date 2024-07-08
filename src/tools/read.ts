@@ -63,7 +63,6 @@ const initBook = async (book: Book, widch: number, height: number) => {
  if (read) {
   readBook.value.chapterIndex = read.chapterIndex
   readBook.value.page = read.page
-  readBook.value.pages = read.pages
  }
  readBook.value.title = book.title
  row.value = Math.floor((widch / config.value.fontSize))
@@ -71,15 +70,20 @@ const initBook = async (book: Book, widch: number, height: number) => {
  book.chapters.forEach(async (chapter) => {
   const pages = [chapter.chapter]
   const lines = chapter.content.split("\n").filter(it => it.trim())
-  const rows = []
+  const rows: string[] = []
   for (let i = 0; i < lines.length; i++) {
    let line = lines[i]
    for (let j = 0; j < row.value; j++) {
-    if (line.length > j * row.value) {
-     rows.push(line.substring(j * row.value, (j + 1) * row.value) + "\n")
-    } else {
-     rows.push(line.substring(j * row.value))
+    let txt = "";
+    if (j === 0) {
+     txt += "        "
     }
+    if (line.length > j * row.value) {
+     txt += line.substring(j === 0 ? j * row.value : (j * row.value) - 2, ((j + 1) * row.value) - 2) + "\n"
+    } else {
+     txt += line.substring(j * row.value)
+    }
+    rows.push(txt)
    }
   }
   const rowss = rows.filter(it => it.trim())

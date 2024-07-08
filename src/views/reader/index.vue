@@ -15,9 +15,9 @@ onMounted(() => {
  nextTick(async () => {
   await initBook(book.value, readerWidth.value, readerHeight.value)
   show.value = true
-  // setTimeout(() => {
-  //  setPage(readBook.value.page! + 1)
-  // }, 5000)
+  setTimeout(() => {
+   setPage(readBook.value.page! + 1)
+  }, 5000)
  })
  console.log(readBook.value);
 })
